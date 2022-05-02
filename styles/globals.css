@@ -27,4 +27,8 @@ body {
     min-width: 320px;
 }
 
+.custom-link{
+  text-decoration: none;
+  color: black;
+}
 
