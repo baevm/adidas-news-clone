@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
+
   @media (min-width: 576px) {
     max-width: 540px;
   }

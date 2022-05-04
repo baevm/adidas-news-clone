@@ -28,7 +28,7 @@ const Customlink = styled.a`
 
 const Breadcrumbs = () => {
   return (
-    <>
+    <div style={{marginTop: '4.5rem'}}>
       <Container>
         <ItemContainer>
           <BreadCrumb onClick={() => router.back()}>
@@ -47,13 +47,13 @@ const Breadcrumbs = () => {
 
           <BreadCrumb>
             {'>'}
-            <Link href={'yeezy'} passHref>
+            <Link href={'/yeezy'} passHref>
               <Customlink>YEEZY</Customlink>
             </Link>
           </BreadCrumb>
         </ItemContainer>
       </Container>
-    </>
+      </div>
   )
 }
 

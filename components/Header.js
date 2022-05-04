@@ -12,6 +12,9 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  position: fixed;
+  z-index: 1000;
+ top: 0;
 `
 
 const ItemContainer = styled.div`
