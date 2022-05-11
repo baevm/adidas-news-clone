@@ -1,53 +1,57 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { AiFillFacebook, AiFillYoutube, AiOutlineInstagram, AiOutlineTwitter } from 'react-icons/ai'
 import { CgArrowLongRight } from 'react-icons/cg'
 import styled from 'styled-components'
-import Container from './Container'
+import { Title } from '../Layout/Title'
+import { Container } from '../Layout/Container'
 import FeaturedCard from './FeaturedCard'
 import NewsCard from './NewsCard'
 
 const MainContent = ({ news, featured }) => {
-  const router = useRouter()
-  
+
 
   return (
     <>
-      <Head>
-        <title>adidas News Site</title>
-      </Head>
       <Container>
         <ItemContainer>
           <Title>YEEZY</Title>
-
-          <div>
-            <AiFillFacebook size={'1.8rem'} style={{ marginRight: '2rem' }} />
-            <AiOutlineTwitter size={'1.8rem'} style={{ marginRight: '2rem' }} />
-            <AiFillYoutube size={'1.8rem'} style={{ marginRight: '2rem' }} />
-            <AiOutlineInstagram size={'1.8rem'} />
-          </div>
+          <IconLinks>
+            <CustomIconLink href='https://www.facebook.com/adidas' target={'_blank'} rel='noreferrer'>
+              <AiFillFacebook size={'1.8rem'} style={{ marginRight: '2rem', color: 'black' }} />
+            </CustomIconLink>
+            <CustomIconLink href='https://twitter.com/adidas' target={'_blank'} rel='noreferrer'>
+              <AiOutlineTwitter size={'1.8rem'} style={{ marginRight: '2rem', color: 'black' }} />
+            </CustomIconLink>
+            <CustomIconLink href='https://www.youtube.com/c/adidas' target={'_blank'} rel='noreferrer'>
+              <AiFillYoutube size={'1.8rem'} style={{ marginRight: '2rem', color: 'black' }} />
+            </CustomIconLink>
+            <CustomIconLink href='https://www.instagram.com/adidas/' target={'_blank'} rel='noreferrer'>
+              <AiOutlineInstagram size={'1.8rem'} style={{ color: 'black' }} />
+            </CustomIconLink>
+          </IconLinks>
         </ItemContainer>
       </Container>
 
       <div style={{ width: '100%', height: 657, position: 'relative', overflow: 'hidden' }}>
-        <img src={news[6].mainPhoto.url} style={{ width: '100%', height: 657, objectFit: 'cover' }} alt='main photo' />
+        <ImageContainer>
+          <Image src={news[6].mainPhoto.url} alt='main photo' layout='fill' objectFit='cover' quality={100} />
+        </ImageContainer>
 
         <ImageTextContainer>
           <ImageTitle>
-            <Link href={`/yeezy/${news[6].slug}`} passHref>
+            <Link href={`/yeezy/${news[6].slug}`} passHref as={`/yeezy/${news[6].slug}`}>
               <CustomLink>YEEZY</CustomLink>
             </Link>
           </ImageTitle>
 
           <ImageText>
-            <Link href={`/yeezy/${news[6].slug}`} passHref>
+            <Link href={`/yeezy/${news[6].slug}`} passHref as={`/yeezy/${news[6].slug}`}>
               <CustomLink>{news[6].title}</CustomLink>
             </Link>
           </ImageText>
-          <Link href={`/yeezy/${news[6].slug}`} passHref>
+          <Link href={`/yeezy/${news[6].slug}`} passHref as={`/yeezy/${news[6].slug}`}>
             <LearnMoreButton>
               Learn more
               <span style={{ marginLeft: '1.5rem', height: '25px' }}>
@@ -58,10 +62,8 @@ const MainContent = ({ news, featured }) => {
         </ImageTextContainer>
       </div>
 
-
       <NewsCard news={news} />
-
-      <FeaturedCard featured={featured} /> 
+      <FeaturedCard featured={featured} />
     </>
   )
 }
@@ -72,22 +74,35 @@ const ItemContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+  }
 `
 
-const Title = styled.h1`
-  margin: 0;
-  font-family: adineuePRO;
-  font-weight: 700;
-  line-height: 38px;
-  font-size: 42px;
-  letter-spacing: 1.9px;
-  width: 75%;
+const IconLinks = styled.div`
+  margin-top: 1rem;
+  @media (min-width: 768px) {
+    margin: 0;
+  }
+`
+
+const CustomIconLink = styled.a`
+  &:hover {
+    opacity: 50%;
+  }
+`
+
+const ImageContainer = styled.div`
+  width: 320px;
+  height: 180px;
 `
 
 const ImageTextContainer = styled.div`
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -99,19 +114,23 @@ const ImageTextContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  color: white;
   font-family: adineuePRO;
+
   @media (min-width: 576px) {
     max-width: 540px;
+    position: relative;
   }
   @media (min-width: 768px) {
     max-width: 720px;
+    position: absolute;
   }
   @media (min-width: 992px) {
     max-width: 960px;
+    position: absolute;
   }
   @media (min-width: 1200px) {
     max-width: 1280px;
+    position: absolute;
   }
 `
 
@@ -131,13 +150,17 @@ const ImageText = styled.p`
 
 const CustomLink = styled.a`
   text-decoration: none;
-  color: ${(props) => (props.color ? props.color : 'white')};
+  color: ${(props) => (props.color ? props.color : 'black')};
+
+  @media (min-width: 768px) {
+    color: white;
+  }
 `
 
 const LearnMoreButton = styled.button`
   border: none;
   margin-top: 0.7rem;
-  background-color: white;
+  background-color: black;
   text-transform: uppercase;
   padding: 1rem;
   display: flex;
@@ -147,14 +170,17 @@ const LearnMoreButton = styled.button`
   font-weight: 700;
   font-family: adineuePRO;
   cursor: pointer;
-  color: black;
+  color: white;
   transition: 0.2s all;
 
   &:active {
     transform: scale(0.95);
   }
+
+  @media (min-width: 768px) {
+    color: black;
+    background-color: white;
+  }
 `
-
-
 
 export default MainContent

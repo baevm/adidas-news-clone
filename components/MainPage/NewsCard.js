@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Container from './Container'
+import { Container } from '../Layout/Container'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const CardContainer = styled.div`
   display: flex;
@@ -16,7 +17,6 @@ const CardContainer = styled.div`
 
 const Card = styled.div`
   flex: 0 0 33.3%;
-  max-width: 33.33333%;
   margin-bottom: 2rem;
 `
 
@@ -29,6 +29,11 @@ const CardTitle = styled.h5`
 const CardsTitle = styled.h3`
   text-transform: uppercase;
   font-size: 2.5rem;
+`
+const CustomLink = styled.a`
+  text-decoration: none;
+  color: ${(props) => (props.color ? props.color : 'white')};
+  cursor: pointer;
 `
 
 const NewsCard = ({ news }) => {
@@ -43,8 +48,12 @@ const NewsCard = ({ news }) => {
           {news.slice(0, 6).map((n) => {
             return (
               <Card key={n.id}>
-                <Image src={n.mainPhoto.url} alt={n.title} unoptimized width={410} height={250}/>
-                <CardTitle>{n.title}</CardTitle>
+                <Link href={`/yeezy/${n.slug}`} passHref as={`/yeezy/${n.slug}`}>
+                  <CustomLink color='black'>
+                    <Image src={n.mainPhoto.url} alt={n.title} quality={100} width={410} height={250} />
+                    <CardTitle>{n.title}</CardTitle>
+                  </CustomLink>
+                </Link>
               </Card>
             )
           })}

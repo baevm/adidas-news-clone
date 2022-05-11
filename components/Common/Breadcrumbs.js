@@ -1,10 +1,9 @@
 import React from 'react'
-import Container from './Container'
+import { Container } from '../Layout/Container'
 import styled from 'styled-components'
-import Head from 'next/head'
 import { FiCornerUpLeft } from 'react-icons/fi'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+
 
 const ItemContainer = styled.div`
   display: flex;
@@ -28,7 +27,7 @@ const Customlink = styled.a`
 
 const Breadcrumbs = () => {
   return (
-    <div style={{marginTop: '4.5rem'}}>
+    <div style={{ marginTop: '4.5rem' }}>
       <Container>
         <ItemContainer>
           <BreadCrumb onClick={() => router.back()}>
@@ -53,7 +52,7 @@ const Breadcrumbs = () => {
           </BreadCrumb>
         </ItemContainer>
       </Container>
-      </div>
+    </div>
   )
 }
 
