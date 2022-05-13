@@ -20,6 +20,7 @@ export const getStaticProps = async (pageContext) => {
           url
         }
         mediaPhotos {
+          id
           url
         }
         description {
