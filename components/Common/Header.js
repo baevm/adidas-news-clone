@@ -6,6 +6,7 @@ import { FiMenu, FiSearch, FiDownload, FiX } from 'react-icons/fi'
 import { Container } from '../Layout/Container'
 import CustomBurger from './CustomBurger'
 import SearchButton from './SearchButton'
+import MediaCart from './MediaCart'
 
 const HeaderContainer = styled.div`
   height: 80px;
@@ -15,7 +16,7 @@ const HeaderContainer = styled.div`
   align-items: center;
   width: 100%;
   position: fixed;
-  z-index: 1000;
+  z-index: 1;
   top: 0;
 `
 
@@ -43,16 +44,14 @@ const Text = styled.p`
   letter-spacing: 1px;
 `
 
-
 const Header = () => {
-
-
   return (
     <HeaderContainer>
       <Container position='relative'>
+        
         <ItemContainer>
           <div>
-          <CustomBurger />
+            <CustomBurger />
           </div>
           <div>
             <Text>NEWS</Text>
@@ -64,11 +63,10 @@ const Header = () => {
         </LogoContainer>
 
         <ItemContainer>
-          
-         <SearchButton />
-
-          <FiDownload size='1.4em' style={{ paddingLeft: '56px' }} />
+          <SearchButton />
+          <MediaCart />
         </ItemContainer>
+
       </Container>
     </HeaderContainer>
   )

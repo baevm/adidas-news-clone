@@ -8,7 +8,6 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import Footer from '../Common/Footer'
 
-
 const DownloadText = styled.h4`
   font-size: 1.2rem;
   letter-spacing: 1.1px;
@@ -33,6 +32,7 @@ const LinkText = styled.a`
 const MediaPhotoItem = styled(Image)`
   object-fit: cover;
   margin: '10px 10px 0 0';
+  cursor: pointer;
 `
 
 const MainContent = ({ mainPhoto, mediaPhotos, title, description, productDetails }) => {
@@ -47,7 +47,7 @@ const MainContent = ({ mainPhoto, mediaPhotos, title, description, productDetail
         </div>
       </Container>
       <div>
-        <img src={mainPhoto.url} style={{ width: '100%', height: 740, objectFit: 'cover' }} />
+        <img src={mainPhoto.url} style={{ width: '100%', height: 740, objectFit: 'cover' }} alt={'sneaker photo'} />
       </div>
 
       <Container mb='4rem' align='flex-start' mt='2rem'>
@@ -63,12 +63,11 @@ const MainContent = ({ mainPhoto, mediaPhotos, title, description, productDetail
           </div>
           <div>
             {mediaPhotos.map((photo) => (
-              <span key={photo.id} style={{ margin: '10px 10px 0 0' }}>
+              <span key={photo.id} style={{ margin: '10px 10px 0 0', cursor: 'pointer' }}>
                 <MediaPhotoItem src={photo.url} width={140} height={140} alt='media pic' />
               </span>
             ))}
           </div>
-          
         </Container45>
       </Container>
       <Footer />

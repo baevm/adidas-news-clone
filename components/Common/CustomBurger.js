@@ -35,65 +35,64 @@ const AccoridonLink = styled.a`
   }
 `
 
-const accordionItems = [
-  {
-    id: 1,
-    title: 'Sports',
-    links: [
-      { name: 'American Football', link: '' },
-      { name: 'Baseball', link: '' },
-      { name: 'Basketball', link: '' },
-      { name: 'Football', link: '' },
-      { name: 'Golf', link: '' },
-      { name: 'Ice Hockey', link: '' },
-      { name: 'Outdoor', link: '' },
-      { name: 'Rugby', link: '' },
-      { name: 'Running', link: '' },
-      { name: 'Skateboarding', link: '' },
-      { name: 'Swimming', link: '' },
-      { name: 'Tennis', link: '' },
-      { name: 'Training', link: '' },
-    ],
-  },
-  {
-    id: 2,
-    title: 'Brands',
-    links: [
-      { name: 'Originals', link: '' },
-      { name: 'adidas by', link: '' },
-      { name: 'adidas by Stella McCartney', link: '' },
-      { name: 'adidas Pharell Williams', link: '' },
-      { name: 'Athletics', link: '' },
-      { name: 'Y-3', link: '' },
-      { name: 'YEEZY', link: '' },
-    ],
-  },
-  {
-    id: 3,
-    title: 'Product streams',
-    links: [
-      { name: 'Footwear', link: '' },
-      { name: 'Apparel', link: '' },
-      { name: 'Teams', link: '' },
-    ],
-  },
-  {
-    id: 4,
-    title: 'Innovations',
-    links: [
-      { name: 'FUTURECRAFT', link: '' },
-      { name: '4D', link: '' },
-      { name: 'Boost', link: '' },
-      { name: 'Primeknit', link: '' },
-      { name: 'Clima', link: '' },
-      { name: 'Made with Recycled Materials', link: '' },
-      { name: 'Made To Be Remade', link: '' },
-      { name: 'Made With Nature', link: '' },
-    ],
-  },
-]
-
 export default function CustomBurger() {
+  const accordionItems = [
+    {
+      id: 1,
+      title: 'Sports',
+      links: [
+        { name: 'American Football', link: '' },
+        { name: 'Baseball', link: '' },
+        { name: 'Basketball', link: '' },
+        { name: 'Football', link: '' },
+        { name: 'Golf', link: '' },
+        { name: 'Ice Hockey', link: '' },
+        { name: 'Outdoor', link: '' },
+        { name: 'Rugby', link: '' },
+        { name: 'Running', link: '' },
+        { name: 'Skateboarding', link: '' },
+        { name: 'Swimming', link: '' },
+        { name: 'Tennis', link: '' },
+        { name: 'Training', link: '' },
+      ],
+    },
+    {
+      id: 2,
+      title: 'Brands',
+      links: [
+        { name: 'Originals', link: '' },
+        { name: 'adidas by', link: '' },
+        { name: 'adidas by Stella McCartney', link: '' },
+        { name: 'adidas Pharell Williams', link: '' },
+        { name: 'Athletics', link: '' },
+        { name: 'Y-3', link: '' },
+        { name: 'YEEZY', link: '' },
+      ],
+    },
+    {
+      id: 3,
+      title: 'Product streams',
+      links: [
+        { name: 'Footwear', link: '' },
+        { name: 'Apparel', link: '' },
+        { name: 'Teams', link: '' },
+      ],
+    },
+    {
+      id: 4,
+      title: 'Innovations',
+      links: [
+        { name: 'FUTURECRAFT', link: '' },
+        { name: '4D', link: '' },
+        { name: 'Boost', link: '' },
+        { name: 'Primeknit', link: '' },
+        { name: 'Clima', link: '' },
+        { name: 'Made with Recycled Materials', link: '' },
+        { name: 'Made To Be Remade', link: '' },
+        { name: 'Made With Nature', link: '' },
+      ],
+    },
+  ]
   const [opened, setOpened] = useState(false)
   const [expanded, setExpanded] = useState(false)
 
@@ -104,12 +103,11 @@ export default function CustomBurger() {
   const ref = useOutsideClick(closeBurger)
 
   return (
-    <>
+    <div ref={ref}>
       <Burger
         opened={opened}
         onClick={() => setOpened((o) => !o)}
         sx={{ borderRadius: 0, marginRight: '3.5rem', border: `${opened ? '1px solid black' : ''}`, zIndex: 1000 }}
-        ref={ref}
       />
       <AnimatePresence>
         {opened && (
@@ -140,6 +138,6 @@ export default function CustomBurger() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }

@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Title } from '../Layout/Title'
 import { Container } from '../Layout/Container'
 import styled from 'styled-components'
 import { AiFillFacebook, AiOutlineTwitter, AiOutlineShareAlt } from 'react-icons/ai'
 import { Container55 } from '../Layout/Container55'
-import parse from 'html-react-parser'
 import Footer from '../Common/Footer'
 import { Container45 } from '../Layout/Container45'
 import Image from 'next/image'
+import SneakerPopup from '../Common/SneakerPopup'
 
 const DateText = styled.p`
   margin-top: 1.5rem;
@@ -43,6 +43,14 @@ const MediaPhotoItem = styled(Image)`
 `
 
 const MainContent = ({ title, date, mainPhoto, description, mediaPhotos }) => {
+  const [open, setOpen] = useState(false)
+  const [clicked, setClicked] = useState()
+
+  const ClickHandle = (index) => {
+    setOpen(true)
+    setClicked(index)
+  }
+
   return (
     <>
       <Container>
@@ -72,14 +80,15 @@ const MainContent = ({ title, date, mainPhoto, description, mediaPhotos }) => {
             <LinkText>Download All</LinkText>
           </div>
           <div>
-            {mediaPhotos.map((photo) => (
-              <span key={photo.id} style={{ margin: '10px 10px 0 0' }}>
+            {mediaPhotos.map((photo, index) => (
+              <span key={photo.id} style={{ margin: '10px 10px 0 0', cursor: 'pointer' }} onClick={() => ClickHandle(index)}>
                 <MediaPhotoItem src={photo.url} width={140} height={140} alt='media pic' />
               </span>
             ))}
           </div>
         </Container45>
       </Container>
+      <SneakerPopup open={open} setOpen={setOpen} clicked={clicked} setClicked={setClicked} mediaPhotos={mediaPhotos} title={title}/>
       <Footer />
     </>
   )

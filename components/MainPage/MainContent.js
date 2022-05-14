@@ -34,9 +34,9 @@ const MainContent = ({ news, featured }) => {
         </ItemContainer>
       </Container>
 
-      <div style={{ width: '100%', height: 657, position: 'relative', overflow: 'hidden' }}>
+      <div style={{ width: '100%', height: 725, position: 'relative', overflow: 'hidden' }}>
         <ImageContainer>
-          <Image src={news[6].mainPhoto.url} alt='main photo' layout='fill' objectFit='cover' quality={100} />
+          <Image src={news[6].mainPhoto.url} alt='main photo' layout='fill' objectFit='cover' quality={75} />
         </ImageContainer>
 
         <ImageTextContainer>
