@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Container } from '../Layout/Container'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Container } from '../Layout/Container'
 
 const CardContainer = styled.div`
   display: flex;
@@ -30,6 +30,7 @@ const CardsTitle = styled.h3`
   text-transform: uppercase;
   font-size: 2.5rem;
 `
+
 const CustomLink = styled.a`
   text-decoration: none;
   color: ${(props) => (props.color ? props.color : 'white')};
@@ -45,18 +46,16 @@ const NewsCard = ({ news }) => {
 
       <Container>
         <CardContainer>
-          {news.slice(0, 6).map((n) => {
-            return (
-              <Card key={n.id}>
-                <Link href={`/yeezy/${n.slug}`} passHref as={`/yeezy/${n.slug}`}>
-                  <CustomLink color='black'>
-                    <Image src={n.mainPhoto.url} alt={n.title} quality={100} width={410} height={250} />
-                    <CardTitle>{n.title}</CardTitle>
-                  </CustomLink>
-                </Link>
-              </Card>
-            )
-          })}
+          {news.slice(0, 6).map((n) => (
+            <Card key={n.id}>
+              <Link href={`/yeezy/${n.slug}`} passHref as={`/yeezy/${n.slug}`}>
+                <CustomLink color='black'>
+                  <Image src={n.mainPhoto.url} alt={n.title} quality={100} width={410} height={250} />
+                  <CardTitle>{n.title}</CardTitle>
+                </CustomLink>
+              </Link>
+            </Card>
+          ))}
         </CardContainer>
       </Container>
     </>

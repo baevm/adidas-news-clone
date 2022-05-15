@@ -1,9 +1,9 @@
 import React from 'react'
-import { Container } from '../Layout/Container'
 import styled from 'styled-components'
 import { FiCornerUpLeft } from 'react-icons/fi'
 import Link from 'next/link'
-
+import { useRouter } from 'next/router'
+import { Container } from '../Layout/Container'
 
 const ItemContainer = styled.div`
   display: flex;
@@ -26,27 +26,28 @@ const Customlink = styled.a`
 `
 
 const Breadcrumbs = () => {
+  const router = useRouter()
   return (
     <div style={{ marginTop: '4.5rem' }}>
       <Container>
         <ItemContainer>
           <BreadCrumb onClick={() => router.back()}>
             <FiCornerUpLeft />
-            <Link href={'/#'} scroll={false} passHref>
+            <Link href='/#' scroll={false} passHref>
               <Customlink>Back</Customlink>
             </Link>
             <p>|</p>
           </BreadCrumb>
 
           <BreadCrumb>
-            <Link href={'/'} passHref>
+            <Link href='/' passHref>
               <Customlink>Home</Customlink>
             </Link>
           </BreadCrumb>
 
           <BreadCrumb>
             {'>'}
-            <Link href={'/yeezy'} passHref>
+            <Link href='/yeezy' passHref>
               <Customlink>YEEZY</Customlink>
             </Link>
           </BreadCrumb>

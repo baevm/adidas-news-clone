@@ -1,10 +1,11 @@
 import { ActionIcon, Modal } from '@mantine/core'
-import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
-import styled from 'styled-components'
-import { CgArrowLongRight } from 'react-icons/cg'
-import { FiGrid, FiX, FiChevronDown } from 'react-icons/fi'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
+import Image from 'next/image'
+import React, { useState } from 'react'
+import { CgArrowLongRight } from 'react-icons/cg'
+import { FiChevronDown, FiGrid, FiX } from 'react-icons/fi'
+import styled from 'styled-components'
+import { useAppContext } from '../../context/AppContext'
 
 const ImageContainer = styled.div`
   max-width: calc(100% - 362px);
@@ -85,10 +86,15 @@ const CustomButton = styled.button`
   }
 `
 
-//BUGGED: speed resets after component unmounted
 const SneakerPopup = ({ open, setOpen, clicked, mediaPhotos, title }) => {
-  const [current, setCurrent] = useState(clicked)
-  const [speed, setSpeed] = useState()
+  const { dispatch } = useAppContext()
+  const [current, setCurrent] = useState(clicked) // number of current photo
+  const [speed, setSpeed] = useState(700) // speed for carousel. set default as 700. on carousel mount set as 1000 otherwise its bugged and resets to 0
+  const [currentId, setCurrentId] = useState() // id of current photo
+
+  const AddToCart = () => {
+    dispatch({ type: 'ADD_MEDIA_FILE', media: currentId })
+  }
 
   return (
     <Modal
@@ -102,31 +108,35 @@ const SneakerPopup = ({ open, setOpen, clicked, mediaPhotos, title }) => {
       <ModalContainer>
         <ImageContainer>
           <Splide
-            options={{ start: clicked, speed: speed, rewind: true, rewindSpeed: 1200, drag: false }}
+            options={{ start: clicked, speed, rewind: true, rewindSpeed: 1200, drag: false }}
             onMounted={() => {
+              setCurrent(clicked + 1)
+              setCurrentId(mediaPhotos[clicked].url)
               setSpeed(1000)
             }}
-            onActive={(splide, next, prev) => {
-              setCurrent(splide.index + 1)
+            onDestroy={() => {
+              setSpeed(0)
+            }}
+            onMove={(newIndex) => {
+              setCurrent(newIndex.index + 1)
+              setCurrentId(mediaPhotos[newIndex.index].url)
             }}>
-            {mediaPhotos ? (
-              mediaPhotos.map((photo) => (
-                <SplideSlide key={photo.id}>
-                  <Image
-                    src={photo.url}
-                    width={918}
-                    height={689}
-                    quality={100}
-                    objectFit='cover'
-                    placeholder='blur'
-                    blurDataURL='data:image/jpeg;base64, iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN89+7JfwAJUwPBIkgrewAAAABJRU5ErkJggg=='
-                    alt={title}
-                  />
-                </SplideSlide>
-              ))
-            ) : (
-              <></>
-            )}
+            {mediaPhotos
+              ? mediaPhotos.map((photo) => (
+                  <SplideSlide key={photo.id}>
+                    <Image
+                      src={photo.url}
+                      width={918}
+                      height={689}
+                      quality={100}
+                      objectFit='cover'
+                      placeholder='blur'
+                      blurDataURL='data:image/jpeg;base64, iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN89+7JfwAJUwPBIkgrewAAAABJRU5ErkJggg=='
+                      alt={title}
+                    />
+                  </SplideSlide>
+                ))
+              : ''}
           </Splide>
         </ImageContainer>
 
@@ -151,7 +161,7 @@ const SneakerPopup = ({ open, setOpen, clicked, mediaPhotos, title }) => {
             </CustomButton>
           </ButtonContainer>
           <ButtonContainer>
-            <CustomButton bgcolor='black' color='white'>
+            <CustomButton bgcolor='black' color='white' onClick={AddToCart}>
               add file to media cart
               <CgArrowLongRight fontSize='1.4rem' />
             </CustomButton>

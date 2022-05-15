@@ -1,10 +1,14 @@
 import '../styles/globals.css'
+import React from 'react'
 import { MantineProvider } from '@mantine/core'
+import { AppWrapper } from '../context/AppContext'
 
 function MyApp({ Component, pageProps }) {
   return (
     <MantineProvider>
-      <Component {...pageProps} />
+      <AppWrapper>
+        <Component {...pageProps} />
+      </AppWrapper>
     </MantineProvider>
   )
 }

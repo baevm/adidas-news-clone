@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
 import Image from 'next/image'
+import React from 'react'
+import styled from 'styled-components'
 import adidasLogo from '../../public/adidas-logo.svg'
-import { FiMenu, FiSearch, FiDownload, FiX } from 'react-icons/fi'
 import { Container } from '../Layout/Container'
 import CustomBurger from './CustomBurger'
-import SearchButton from './SearchButton'
 import MediaCart from './MediaCart'
+import SearchButton from './SearchButton'
 
 const HeaderContainer = styled.div`
   height: 80px;
@@ -44,32 +43,28 @@ const Text = styled.p`
   letter-spacing: 1px;
 `
 
-const Header = () => {
-  return (
-    <HeaderContainer>
-      <Container position='relative'>
-        
-        <ItemContainer>
-          <div>
-            <CustomBurger />
-          </div>
-          <div>
-            <Text>NEWS</Text>
-          </div>
-        </ItemContainer>
+const Header = () => (
+  <HeaderContainer>
+    <Container position='relative'>
+      <ItemContainer>
+        <div>
+          <CustomBurger />
+        </div>
+        <div>
+          <Text>NEWS</Text>
+        </div>
+      </ItemContainer>
 
-        <LogoContainer style={{}}>
-          <Image src={adidasLogo} alt='adidas logo' />
-        </LogoContainer>
+      <LogoContainer style={{}}>
+        <Image src={adidasLogo} alt='adidas logo' />
+      </LogoContainer>
 
-        <ItemContainer>
-          <SearchButton />
-          <MediaCart />
-        </ItemContainer>
-
-      </Container>
-    </HeaderContainer>
-  )
-}
+      <ItemContainer>
+        <SearchButton />
+        <MediaCart />
+      </ItemContainer>
+    </Container>
+  </HeaderContainer>
+)
 
 export default Header

@@ -9,64 +9,60 @@ import { Container } from '../Layout/Container'
 import FeaturedCard from './FeaturedCard'
 import NewsCard from './NewsCard'
 
-const MainContent = ({ news, featured }) => {
+const MainContent = ({ news, featured }) => (
+  <>
+    <Container>
+      <ItemContainer>
+        <Title>YEEZY</Title>
+        <IconLinks>
+          <CustomIconLink href='https://www.facebook.com/adidas' target='_blank' rel='noreferrer'>
+            <AiFillFacebook size='1.8rem' style={{ marginRight: '2rem', color: 'black' }} />
+          </CustomIconLink>
+          <CustomIconLink href='https://twitter.com/adidas' target='_blank' rel='noreferrer'>
+            <AiOutlineTwitter size='1.8rem' style={{ marginRight: '2rem', color: 'black' }} />
+          </CustomIconLink>
+          <CustomIconLink href='https://www.youtube.com/c/adidas' target='_blank' rel='noreferrer'>
+            <AiFillYoutube size='1.8rem' style={{ marginRight: '2rem', color: 'black' }} />
+          </CustomIconLink>
+          <CustomIconLink href='https://www.instagram.com/adidas/' target='_blank' rel='noreferrer'>
+            <AiOutlineInstagram size='1.8rem' style={{ color: 'black' }} />
+          </CustomIconLink>
+        </IconLinks>
+      </ItemContainer>
+    </Container>
 
+    <div style={{ width: '100%', height: 725, position: 'relative', overflow: 'hidden' }}>
+      <ImageContainer>
+        <Image src={news[6].mainPhoto.url} alt='main photo' layout='fill' objectFit='cover' quality={75} />
+      </ImageContainer>
 
-  return (
-    <>
-      <Container>
-        <ItemContainer>
-          <Title>YEEZY</Title>
-          <IconLinks>
-            <CustomIconLink href='https://www.facebook.com/adidas' target={'_blank'} rel='noreferrer'>
-              <AiFillFacebook size={'1.8rem'} style={{ marginRight: '2rem', color: 'black' }} />
-            </CustomIconLink>
-            <CustomIconLink href='https://twitter.com/adidas' target={'_blank'} rel='noreferrer'>
-              <AiOutlineTwitter size={'1.8rem'} style={{ marginRight: '2rem', color: 'black' }} />
-            </CustomIconLink>
-            <CustomIconLink href='https://www.youtube.com/c/adidas' target={'_blank'} rel='noreferrer'>
-              <AiFillYoutube size={'1.8rem'} style={{ marginRight: '2rem', color: 'black' }} />
-            </CustomIconLink>
-            <CustomIconLink href='https://www.instagram.com/adidas/' target={'_blank'} rel='noreferrer'>
-              <AiOutlineInstagram size={'1.8rem'} style={{ color: 'black' }} />
-            </CustomIconLink>
-          </IconLinks>
-        </ItemContainer>
-      </Container>
-
-      <div style={{ width: '100%', height: 725, position: 'relative', overflow: 'hidden' }}>
-        <ImageContainer>
-          <Image src={news[6].mainPhoto.url} alt='main photo' layout='fill' objectFit='cover' quality={75} />
-        </ImageContainer>
-
-        <ImageTextContainer>
-          <ImageTitle>
-            <Link href={`/yeezy/${news[6].slug}`} passHref as={`/yeezy/${news[6].slug}`}>
-              <CustomLink>YEEZY</CustomLink>
-            </Link>
-          </ImageTitle>
-
-          <ImageText>
-            <Link href={`/yeezy/${news[6].slug}`} passHref as={`/yeezy/${news[6].slug}`}>
-              <CustomLink>{news[6].title}</CustomLink>
-            </Link>
-          </ImageText>
+      <ImageTextContainer>
+        <ImageTitle>
           <Link href={`/yeezy/${news[6].slug}`} passHref as={`/yeezy/${news[6].slug}`}>
-            <LearnMoreButton>
-              Learn more
-              <span style={{ marginLeft: '1.5rem', height: '25px' }}>
-                <CgArrowLongRight fontSize='1.4rem' />
-              </span>
-            </LearnMoreButton>
+            <CustomLink>YEEZY</CustomLink>
           </Link>
-        </ImageTextContainer>
-      </div>
+        </ImageTitle>
 
-      <NewsCard news={news} />
-      <FeaturedCard featured={featured} />
-    </>
-  )
-}
+        <ImageText>
+          <Link href={`/yeezy/${news[6].slug}`} passHref as={`/yeezy/${news[6].slug}`}>
+            <CustomLink>{news[6].title}</CustomLink>
+          </Link>
+        </ImageText>
+        <Link href={`/yeezy/${news[6].slug}`} passHref as={`/yeezy/${news[6].slug}`}>
+          <LearnMoreButton>
+            Learn more
+            <span style={{ marginLeft: '1.5rem', height: '25px' }}>
+              <CgArrowLongRight fontSize='1.4rem' />
+            </span>
+          </LearnMoreButton>
+        </Link>
+      </ImageTextContainer>
+    </div>
+
+    <NewsCard news={news} />
+    <FeaturedCard featured={featured} />
+  </>
+)
 
 const ItemContainer = styled.div`
   margin-top: 0.5rem;

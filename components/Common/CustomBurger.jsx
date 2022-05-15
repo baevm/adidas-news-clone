@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Burger, Accordion, AccordionItem } from '@mantine/core'
 import styled from 'styled-components'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -8,10 +8,7 @@ const MenuContainer = styled.div`
   border: 1px solid black;
   position: absolute;
   background-color: white;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 20px 30px;
   top: 25px;
   left: 20px;
   z-index: 10;
@@ -28,7 +25,7 @@ const AccordionLabel = styled.div`
   text-transform: uppercase;
 `
 
-const AccoridonLink = styled.a`
+const AccordionLink = styled.a`
   font-size: 14px;
   &:hover {
     text-decoration: underline;
@@ -107,7 +104,12 @@ export default function CustomBurger() {
       <Burger
         opened={opened}
         onClick={() => setOpened((o) => !o)}
-        sx={{ borderRadius: 0, marginRight: '3.5rem', border: `${opened ? '1px solid black' : ''}`, zIndex: 1000 }}
+        sx={{
+          borderRadius: 0,
+          marginRight: '3.5rem',
+          border: `${opened ? '1px solid black' : ''}`,
+          zIndex: 1000,
+        }}
       />
       <AnimatePresence>
         {opened && (
@@ -126,7 +128,7 @@ export default function CustomBurger() {
                       <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}>
                         {item.links.map((sport) => (
                           <div key={sport.name}>
-                            <AccoridonLink>{sport.name}</AccoridonLink>
+                            <AccordionLink>{sport.name}</AccordionLink>
                           </div>
                         ))}
                       </motion.div>

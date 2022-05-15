@@ -1,8 +1,8 @@
 import React from 'react'
-import { Container } from '../Layout/Container'
 import styled from 'styled-components'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Container } from '../Layout/Container'
 
 const CardsTitle = styled.h3`
   text-transform: uppercase;
@@ -70,30 +70,26 @@ const ImageText = styled.div`
   margin-bottom: 1.5rem;
 `
 
-const FeaturedCard = ({ featured }) => {
-  return (
-    <div style={{ marginBottom: '3rem' }}>
-      <Container>
-        <CardsTitle>featured products</CardsTitle>
-      </Container>
-      <Container>
-        <CardsContainer>
-          {featured.map((f) => {
-            return (
-              <Card key={f.id}>
-                <Link href={f.slug} passHref as={f.slug}>
-                  <CustomLink>
-                    <CardImage src={f.mainPhoto.url} alt={f.title} width={300} height={400} quality={100} />
-                    <ImageText>{f.title}</ImageText>
-                  </CustomLink>
-                </Link>
-              </Card>
-            )
-          })}
-        </CardsContainer>
-      </Container>
-    </div>
-  )
-}
+const FeaturedCard = ({ featured }) => (
+  <div style={{ marginBottom: '3rem' }}>
+    <Container>
+      <CardsTitle>featured products</CardsTitle>
+    </Container>
+    <Container>
+      <CardsContainer>
+        {featured.map((f) => (
+          <Card key={f.id}>
+            <Link href={f.slug} passHref as={f.slug}>
+              <CustomLink>
+                <CardImage src={f.mainPhoto.url} alt={f.title} width={300} height={400} quality={100} />
+                <ImageText>{f.title}</ImageText>
+              </CustomLink>
+            </Link>
+          </Card>
+        ))}
+      </CardsContainer>
+    </Container>
+  </div>
+)
 
 export default FeaturedCard

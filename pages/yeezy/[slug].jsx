@@ -1,12 +1,11 @@
-import React from 'react'
-import { useRouter } from 'next/router'
-import Head from 'next/head'
-import Header from '../../components/Common/Header'
-import Breadcrumbs from '../../components/Common/Breadcrumbs'
-import MainContent from '../../components/NewsPage/MainContent'
 import { gql } from 'graphql-request'
+import { useRouter } from 'next/router'
+import React from 'react'
 import { graphQLClient } from '../../api/graphcms'
+import Breadcrumbs from '../../components/Common/Breadcrumbs'
+import Header from '../../components/Common/Header'
 import SEO from '../../components/Common/SEO'
+import MainContent from '../../components/NewsPage/MainContent'
 
 export const getStaticProps = async (pageContext) => {
   const pageSlug = pageContext.params.slug

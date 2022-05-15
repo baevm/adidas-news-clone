@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { Title } from '../Layout/Title'
-import { Container } from '../Layout/Container'
-import styled from 'styled-components'
-import { AiFillFacebook, AiOutlineTwitter, AiOutlineShareAlt } from 'react-icons/ai'
-import { Container55 } from '../Layout/Container55'
-import Footer from '../Common/Footer'
-import { Container45 } from '../Layout/Container45'
 import Image from 'next/image'
+import React, { useState } from 'react'
+import { AiFillFacebook, AiOutlineShareAlt, AiOutlineTwitter } from 'react-icons/ai'
+import styled from 'styled-components'
+import Footer from '../Common/Footer'
 import SneakerPopup from '../Common/SneakerPopup'
+import { Container } from '../Layout/Container'
+import { Container45 } from '../Layout/Container45'
+import { Container55 } from '../Layout/Container55'
+import { Title } from '../Layout/Title'
 
 const DateText = styled.p`
   margin-top: 1.5rem;
@@ -59,13 +59,13 @@ const MainContent = ({ title, date, mainPhoto, description, mediaPhotos }) => {
       <Container>
         <DateText>{date}</DateText>
         <div>
-          <AiFillFacebook fontSize={'1.8rem'} style={{ marginRight: '2rem' }} />
-          <AiOutlineTwitter fontSize={'1.8rem'} style={{ marginRight: '2rem' }} />
-          <AiOutlineShareAlt fontSize={'1.8rem'} />
+          <AiFillFacebook fontSize='1.8rem' style={{ marginRight: '2rem' }} />
+          <AiOutlineTwitter fontSize='1.8rem' style={{ marginRight: '2rem' }} />
+          <AiOutlineShareAlt fontSize='1.8rem' />
         </div>
       </Container>
       <Container mb='1.5rem'>
-        <img src={mainPhoto.url} style={{ width: '100%', height: 657, objectFit: 'cover' }} />
+        <img src={mainPhoto.url} style={{ width: '100%', height: 657, objectFit: 'cover' }} alt={title} />
       </Container>
 
       <Container mb='4rem' align='flex-start'>
@@ -75,7 +75,7 @@ const MainContent = ({ title, date, mainPhoto, description, mediaPhotos }) => {
 
         <Container45 direction='column' wrap='wrap'>
           <DownloadText>Download Media</DownloadText>
-          <div>
+          <div style={{ marginBottom: '1rem' }}>
             <LinkText>Add All To Cart</LinkText>
             <LinkText>Download All</LinkText>
           </div>
@@ -88,7 +88,7 @@ const MainContent = ({ title, date, mainPhoto, description, mediaPhotos }) => {
           </div>
         </Container45>
       </Container>
-      <SneakerPopup open={open} setOpen={setOpen} clicked={clicked} setClicked={setClicked} mediaPhotos={mediaPhotos} title={title}/>
+      <SneakerPopup open={open} setOpen={setOpen} clicked={clicked} setClicked={setClicked} mediaPhotos={mediaPhotos} title={title} />
       <Footer />
     </>
   )
