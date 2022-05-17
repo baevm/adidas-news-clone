@@ -1,9 +1,9 @@
 import React from 'react'
-import { Container } from '../Layout/Container'
-import styled from 'styled-components'
-import { AiFillFacebook, AiFillYoutube, AiOutlineInstagram, AiOutlineTwitter, AiFillLinkedin } from 'react-icons/ai'
+import { AiFillFacebook, AiFillLinkedin, AiFillYoutube, AiOutlineInstagram, AiOutlineTwitter } from 'react-icons/ai'
 import { FaTiktok } from 'react-icons/fa'
 import { IoLogoRss } from 'react-icons/io'
+import styled from 'styled-components'
+import { Container } from '../Layout/Container'
 
 const Footersub = styled.div`
   width: 100%;
@@ -158,7 +158,7 @@ const Footer = () => {
         <Container>
           <SubscribeContainer>
             <SubscribeTextContainer>
-              <Text>sign up {'&'} personalize your news alerts</Text>
+              <Text>sign up & personalize your news alerts</Text>
             </SubscribeTextContainer>
 
             <SubscribeInputWrapper>
