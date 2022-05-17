@@ -44,8 +44,8 @@ export default function Home({ news, featured }) {
   return (
     <>
       <SEO
-        title={'adidas News Site | Press Resources for all Brands, Sports and Innovations : YEEZY'}
-        ogtitle={'YEEZY'}
+        title="adidas News Site | Press Resources for all Brands, Sports and Innovations : YEEZY"
+        ogtitle="YEEZY"
         description={news[6].title}
         ogdescription={news[6].title}
         url='http://localhost:3000/yeezy'
