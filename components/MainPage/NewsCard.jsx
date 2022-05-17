@@ -9,6 +9,7 @@ const CardContainer = styled.div`
   max-width: 100%;
   flex-wrap: wrap;
   flex-direction: row;
+  gap: 1.5rem;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -16,7 +17,7 @@ const CardContainer = styled.div`
 `
 
 const Card = styled.div`
-  flex: 0 0 33.3%;
+  flex: 0 0 32%;
   margin-bottom: 2rem;
 `
 
@@ -32,8 +33,12 @@ const CardsTitle = styled.h3`
 `
 
 const CustomLink = styled.a`
-  text-decoration: none;
+  text-decoration: ${(props) => (props.decoration ? props.decoration : 'none')};
   color: ${(props) => (props.color ? props.color : 'white')};
+  font-size: ${(props) => (props.size ? props.size : '')};
+  letter-spacing: ${(props) => (props.spacing ? props.spacing : '')};
+  font-weight: ${(props) => (props.weight ? props.weight : '')};
+  text-transform: uppercase;
   cursor: pointer;
 `
 
@@ -41,7 +46,16 @@ const NewsCard = ({ news }) => {
   return (
     <>
       <Container>
-        <CardsTitle>latest news</CardsTitle>
+        <CardsTitle>
+          <Link href={{ pathname: 'latest-news', query: { brands: 'yeezy' } }} passHref>
+            <CustomLink color='black'>latest news</CustomLink>
+          </Link>
+        </CardsTitle>
+        <Link href={{ pathname: 'latest-news', query: { brands: 'yeezy' } }} passHref>
+          <CustomLink color='black' size='14px' spacing='1.5px' decoration='uppercase' weight='700'>
+            see all
+          </CustomLink>
+        </Link>
       </Container>
 
       <Container>
@@ -50,7 +64,7 @@ const NewsCard = ({ news }) => {
             <Card key={n.id}>
               <Link href={`/yeezy/${n.slug}`} passHref as={`/yeezy/${n.slug}`}>
                 <CustomLink color='black'>
-                  <Image src={n.mainPhoto.url} alt={n.title} quality={100} width={410} height={250} />
+                  <Image src={n.mainPhoto.url} alt={n.title} quality={100} width={425} height={260} objectFit='cover' />
                   <CardTitle>{n.title}</CardTitle>
                 </CustomLink>
               </Link>

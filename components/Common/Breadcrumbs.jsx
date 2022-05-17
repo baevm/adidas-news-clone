@@ -20,13 +20,16 @@ const BreadCrumb = styled.div`
 
 const Customlink = styled.a`
   font-size: 0.8rem;
-  color: black;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
+  color: ${(props) => (props.color ? props.color : 'black')};
+  text-decoration: ${(props) => (props.decoration ? props.decoration : '')};
+  text-transform: ${(props) => (props.transform ? props.transform : '')};
 `
 
 const Breadcrumbs = () => {
   const router = useRouter()
+ 
   return (
     <div style={{ marginTop: '4.5rem' }}>
       <Container>
@@ -48,9 +51,20 @@ const Breadcrumbs = () => {
           <BreadCrumb>
             {'>'}
             <Link href='/yeezy' passHref>
-              <Customlink>YEEZY</Customlink>
+              <Customlink color={router.pathname === '/yeezy' ? '#98989a' : 'black'} decoration={router.pathname === '/yeezy' ? 'none' : 'underline'}>
+                YEEZY
+              </Customlink>
             </Link>
           </BreadCrumb>
+
+          {router.pathname === '/[slug]' && (
+            <BreadCrumb>
+              {'>'}
+              <Customlink color='#98989a' transform='uppercase'>
+                {router.query.slug.replace(/-/gi, ' ')}
+              </Customlink>
+            </BreadCrumb>
+          )}
         </ItemContainer>
       </Container>
     </div>
