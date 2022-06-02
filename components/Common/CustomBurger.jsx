@@ -50,8 +50,8 @@ export default function CustomBurger() {
         { name: 'Skateboarding', link: '' },
         { name: 'Swimming', link: '' },
         { name: 'Tennis', link: '' },
-        { name: 'Training', link: '' },
-      ],
+        { name: 'Training', link: '' }
+      ]
     },
     {
       id: 2,
@@ -63,8 +63,8 @@ export default function CustomBurger() {
         { name: 'adidas Pharell Williams', link: '' },
         { name: 'Athletics', link: '' },
         { name: 'Y-3', link: '' },
-        { name: 'YEEZY', link: '' },
-      ],
+        { name: 'YEEZY', link: '' }
+      ]
     },
     {
       id: 3,
@@ -72,8 +72,8 @@ export default function CustomBurger() {
       links: [
         { name: 'Footwear', link: '' },
         { name: 'Apparel', link: '' },
-        { name: 'Teams', link: '' },
-      ],
+        { name: 'Teams', link: '' }
+      ]
     },
     {
       id: 4,
@@ -86,9 +86,9 @@ export default function CustomBurger() {
         { name: 'Clima', link: '' },
         { name: 'Made with Recycled Materials', link: '' },
         { name: 'Made To Be Remade', link: '' },
-        { name: 'Made With Nature', link: '' },
-      ],
-    },
+        { name: 'Made With Nature', link: '' }
+      ]
+    }
   ]
   const [opened, setOpened] = useState(false)
   const [expanded, setExpanded] = useState(false)
@@ -108,7 +108,7 @@ export default function CustomBurger() {
           borderRadius: 0,
           marginRight: '3.5rem',
           border: `${opened ? '1px solid black' : ''}`,
-          zIndex: 1000,
+          zIndex: 1000
         }}
       />
       <AnimatePresence>
@@ -121,7 +121,7 @@ export default function CustomBurger() {
                     label={<AccordionLabel>{item.title}</AccordionLabel>}
                     onClick={() => setExpanded(!expanded)}
                     sx={{
-                      border: 0,
+                      border: 0
                     }}
                     key={item.id}>
                     {expanded && (

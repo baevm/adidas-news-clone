@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
-    styledComponents: true,
+    styledComponents: true
   },
 
   async redirects() {
@@ -10,14 +10,14 @@ const nextConfig = {
       {
         source: '/',
         destination: '/yeezy',
-        permanent: true,
-      },
+        permanent: true
+      }
     ]
   },
 
   images: {
-    domains: ['media.graphassets.com'],
-  },
+    domains: ['media.graphassets.com']
+  }
 }
 
 module.exports = nextConfig

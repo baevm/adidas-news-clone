@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import adidasLogo from '../../public/adidas-logo.svg'
 import { Container } from '../Layout/Container'
 import CustomBurger from './CustomBurger'
-import MediaCart from './MediaCart'
+import MediaCart from './Cart/MediaCart'
 import SearchButton from './SearchButton'
 
 const HeaderContainer = styled.div`
