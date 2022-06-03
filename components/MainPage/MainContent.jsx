@@ -31,10 +31,10 @@ const MainContent = ({ news, featured }) => (
       </ItemContainer>
     </Container>
 
-    <div style={{ width: '100%', height: 725, position: 'relative', overflow: 'hidden' }}>
-      <ImageContainer>
+    <MainImageContainer >
+  
         <Image src={news[6].mainPhoto.url} alt='main photo' layout='fill' objectFit='cover' quality={75} />
-      </ImageContainer>
+   
 
       <ImageTextContainer>
         <ImageTitle>
@@ -57,7 +57,7 @@ const MainContent = ({ news, featured }) => (
           </LearnMoreButton>
         </Link>
       </ImageTextContainer>
-    </div>
+    </MainImageContainer>
 
     <NewsCard news={news} />
     <FeaturedCard featured={featured} />
@@ -92,9 +92,16 @@ const CustomIconLink = styled.a`
   }
 `
 
-const ImageContainer = styled.div`
-  width: 320px;
-  height: 180px;
+const MainImageContainer = styled.div`
+  width:100%; 
+  height: 400px; 
+  position: relative; 
+  overflow: hidden;
+
+  @media(min-width: 768px){
+    height: 725px;
+  }
+
 `
 
 const ImageTextContainer = styled.div`
@@ -111,10 +118,17 @@ const ImageTextContainer = styled.div`
   margin-right: auto;
   width: 100%;
   font-family: adineuePRO;
+  
+  @media (min-width: 320px) {
+    max-width: 540px;
+    position: absolute;
+    justify-content: end;
+  }
 
   @media (min-width: 576px) {
     max-width: 540px;
     position: relative;
+    justify-content: center;
   }
   @media (min-width: 768px) {
     max-width: 720px;

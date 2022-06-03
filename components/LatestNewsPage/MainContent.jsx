@@ -1,3 +1,6 @@
+import { Grid } from '@mantine/core'
+import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import { VscClose } from 'react-icons/vsc'
 import styled from 'styled-components'
@@ -7,8 +10,16 @@ import MenuAccordion from './MenuAccordion'
 
 const Container25 = styled.div`
   margin-top: 3rem;
+
+
   @media (min-width: 992px) {
     display: block !important;
+  }
+
+  @media (min-width: 320px) {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
   }
 
   @media (min-width: 768px) {
@@ -24,7 +35,8 @@ const Container25 = styled.div`
 
 const Container75 = styled.div`
   margin-top: 3rem;
-  border: 1px solid #ededed;
+  display: flex;
+  align-items: center;
 
   @media (min-width: 768px) {
     flex: 0 0 100%;
@@ -51,8 +63,8 @@ const Text = styled.h4`
   text-transform: uppercase;
   font-family: adineuePRO;
   letter-spacing: 1.5px;
-  font-size: 18px;
-  line-height: 1;
+  font-size: ${(props) => (props.size ? props.size : '18px')};
+  line-height: 1.5;
 `
 
 const TagWrapper = styled.div`
@@ -75,13 +87,34 @@ const ClearButton = styled.button`
   cursor: pointer;
 `
 
-const MainContent = () => {
+const DateText = styled.p`
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: #c2c0c0;
+  letter-spacing: 0.5px;
+`
+
+const CustomLink = styled.a`
+  color: black;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: bold;
+  
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+const MainContent = ({ newsPages }) => {
+  
   return (
     <>
-      <Container>
+      <Container direction='column' align='flex-start'>
         <Title transform='uppercase'>news</Title>
       </Container>
-      <Container align='flex-start'>
+      <Container align='flex-start' direction='column' mb='5rem'>
         <Container25>
           <FilterWrapper p='1rem'>
             <Text>Refine</Text>
@@ -99,10 +132,23 @@ const MainContent = () => {
           <FilterWrapper>
             <MenuAccordion />
           </FilterWrapper>
-          
         </Container25>
 
-        <Container75>aseadas</Container75>
+        <Container75>
+          <Grid justify='center'>
+            {newsPages.map((item) => (
+              <Grid.Col span={8} key={item.id} xs={6} sm={6} md={6} lg={4} xl={4}>
+                <Link href={`/yeezy/${item.slug}`} passHref>
+                  <Image src={item.mainPhoto.url} width={300} height={200} objectFit='cover' style={{ cursor: 'pointer' }} quality={100} layout="responsive"/>
+                </Link>
+                <DateText>{item.date}</DateText>
+                <Link href={`/yeezy/${item.slug}`} passHref>
+                  <CustomLink>{item.title}</CustomLink>
+                </Link>
+              </Grid.Col>
+            ))}
+          </Grid>
+        </Container75>
       </Container>
     </>
   )

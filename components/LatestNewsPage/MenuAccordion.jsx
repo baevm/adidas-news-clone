@@ -21,7 +21,6 @@ const InnovationsBurger = [
   { id: 2, title: 'Primeknit' }
 ]
 
-
 const BurgerItem = styled.div`
   display: flex;
   align-items: center;
@@ -38,39 +37,27 @@ const BurgetText = styled.p`
 const MenuAccordion = () => {
   return (
     <Accordion iconPosition='right'>
-      <AccordionItem
-        label='DATE'
-        sx={{
-          border: 0
-        }}>
+      <AccordionItem label='DATE'>
         {DateBurger.map((item) => (
-          <BurgerItem>
+          <BurgerItem key={item.id}>
             <Checkbox color='dark' size='lg' sx={{ marginRight: '0.5rem' }} />
             <BurgetText>{item.title}</BurgetText>
           </BurgerItem>
         ))}
       </AccordionItem>
 
-      <AccordionItem
-        label='BRANDS'
-        sx={{
-          border: 0
-        }}>
+      <AccordionItem label='BRANDS'>
         {BrandsBurger.map((item) => (
-          <BurgerItem>
+          <BurgerItem key={item.id}>
             <Checkbox color='dark' size='lg' sx={{ marginRight: '0.5rem' }} />
             <BurgetText>{item.title}</BurgetText>
           </BurgerItem>
         ))}
       </AccordionItem>
 
-      <AccordionItem
-        label='INNOVATIONS'
-        sx={{
-          border: 0
-        }}>
+      <AccordionItem label='INNOVATIONS'>
         {InnovationsBurger.map((item) => (
-          <BurgerItem>
+          <BurgerItem key={item.id}>
             <Checkbox color='dark' size='lg' sx={{ marginRight: '0.5rem' }} />
             <BurgetText>{item.title}</BurgetText>
           </BurgerItem>

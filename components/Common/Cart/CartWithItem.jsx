@@ -1,11 +1,11 @@
-import { ActionIcon, SimpleGrid } from '@mantine/core'
+import { ActionIcon, Grid, SimpleGrid } from '@mantine/core'
 import React from 'react'
 import Image from 'next/image'
 import { CgArrowLongRight } from 'react-icons/cg'
 import { FiX } from 'react-icons/fi'
 import styled from 'styled-components'
 import { Title } from '../../Layout/Title'
-
+import { useAppContext } from '../../../context/AppContext'
 
 const ModalHeader = styled.div`
   background-color: black;
@@ -56,7 +56,12 @@ const ItemText = styled.h5`
   margin: 0;
 `
 const CartWithItem = ({ setOpen, media }) => {
-   
+  const {state, dispatch} = useAppContext()
+
+  const handleRemove = () =>{
+    dispatch({type: 'REMOVE_ALL_MEDIA'})
+  }
+  
   return (
     <>
       <ModalHeader>
@@ -78,7 +83,7 @@ const CartWithItem = ({ setOpen, media }) => {
               <CgArrowLongRight size='1rem' style={{ marginLeft: '2.5rem' }} />
             </ContinueButton>
 
-            <ContinueButton>
+            <ContinueButton onClick={handleRemove}>
               Empty media cart
               <CgArrowLongRight size='1rem' style={{ marginLeft: '3.8rem' }} />
             </ContinueButton>
@@ -93,20 +98,14 @@ const CartWithItem = ({ setOpen, media }) => {
         </div>
       </ModalHeader>
       <ModalContent justify='flex-start' maxWidth='100%'>
-        <SimpleGrid
-          cols={3}
-          spacing='sm'
-          breakpoints={[
-            { maxWidth: 1200, cols: 6, spacing: 'md' },
-            { maxWidth: 755, cols: 2, spacing: 'sm' }
-          ]}>
+        <Grid md={6} lg={3}>
           {media.map((item) => (
-            <div style={{ width: 'auto', height: 'auto' }}>
-              <Image src={item} objectFit='cover' width={300} height={290} />
-              <ItemText>yeezy</ItemText>
-            </div>
+            <Grid.Col span={3} key={item.url}>
+              <Image src={item.url} objectFit='cover' width={275} height={205} />
+              <ItemText>{item.imgtitle}</ItemText>
+            </Grid.Col>
           ))}
-        </SimpleGrid>
+        </Grid>
       </ModalContent>
     </>
   )

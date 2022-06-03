@@ -1,16 +1,10 @@
 import { ActionIcon, Modal } from '@mantine/core'
-import { Splide, SplideSlide } from '@splidejs/react-splide'
-import Image from 'next/image'
 import React, { useState } from 'react'
 import { CgArrowLongRight } from 'react-icons/cg'
 import { FiChevronDown, FiGrid, FiX } from 'react-icons/fi'
 import styled from 'styled-components'
-import { useAppContext } from '../../context/AppContext'
-
-const ImageContainer = styled.div`
-  max-width: calc(100% - 362px);
-  max-height: 689px;
-`
+import { useAppContext } from '../../../context/AppContext'
+import PopupImage from './PopupImage'
 
 const ModalContainer = styled.div`
   display: flex;
@@ -88,12 +82,18 @@ const CustomButton = styled.button`
 
 const SneakerPopup = ({ open, setOpen, clicked, mediaPhotos, title }) => {
   const { dispatch } = useAppContext()
+  const [addedAlert, setAddedAlert] = useState(false)
   const [current, setCurrent] = useState(clicked) // number of current photo
-  const [speed, setSpeed] = useState(700) // speed for carousel. set default as 700. on carousel mount set as 1000 otherwise its bugged and resets to 0
   const [currentId, setCurrentId] = useState() // id of current photo
+ 
 
   const AddToCart = () => {
-    dispatch({ type: 'ADD_MEDIA_FILE', media: currentId })
+    setAddedAlert(true)
+    dispatch({ type: 'ADD_MEDIA_FILE', media: { url: currentId, imgtitle: title } })
+
+    setTimeout(() => {
+      setAddedAlert(false)
+    }, 3000)
   }
 
   return (
@@ -106,39 +106,16 @@ const SneakerPopup = ({ open, setOpen, clicked, mediaPhotos, title }) => {
       size='1280px'
       style={{ display: 'flex', justifyContent: 'center' }}>
       <ModalContainer>
-        <ImageContainer>
-          <Splide
-            options={{ start: clicked, speed, rewind: true, rewindSpeed: 1200, drag: false }}
-            onMounted={() => {
-              setCurrent(clicked + 1)
-              setCurrentId(mediaPhotos[clicked].url)
-              setSpeed(1000)
-            }}
-            onDestroy={() => {
-              setSpeed(0)
-            }}
-            onMove={(newIndex) => {
-              setCurrent(newIndex.index + 1)
-              setCurrentId(mediaPhotos[newIndex.index].url)
-            }}>
-            {mediaPhotos
-              ? mediaPhotos.map((photo) => (
-                  <SplideSlide key={photo.id}>
-                    <Image
-                      src={photo.url}
-                      width={918}
-                      height={689}
-                      quality={100}
-                      objectFit='cover'
-                      placeholder='blur'
-                      blurDataURL='data:image/jpeg;base64, iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN89+7JfwAJUwPBIkgrewAAAABJRU5ErkJggg=='
-                      alt={title}
-                    />
-                  </SplideSlide>
-                ))
-              : ''}
-          </Splide>
-        </ImageContainer>
+        <PopupImage
+          clicked={clicked}
+          mediaPhotos={mediaPhotos}
+          title={title}
+          current={current}
+          setCurrent={setCurrent}
+          addedAlert={addedAlert}
+          setCurrentId={setCurrentId}
+      
+        />
 
         <TextContainer>
           <FirstString>
