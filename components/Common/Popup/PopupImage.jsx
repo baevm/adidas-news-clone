@@ -47,7 +47,6 @@ const PopupImage = ({ clicked, mediaPhotos, title, setCurrent, addedAlert, setCu
     setWatchAddedAlert(addedAlert)
   }, [addedAlert])
 
- console.log(mediaPhotos)
   return (
     <ImageContainer>
       <Splide

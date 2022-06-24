@@ -1,67 +1,27 @@
-import { gql } from 'graphql-request'
 import { useRouter } from 'next/router'
-import React from 'react'
-import { graphQLClient } from '../api/graphcms'
 import Breadcrumbs from '../components/Common/Breadcrumbs'
 import Header from '../components/Common/Header'
 import SEO from '../components/Common/SEO'
 import MainContent from '../components/FeaturedPage/MainContent'
+import { getFeaturedPage, getFeaturedPaths } from '../lib/graphcms'
 
 export const getStaticProps = async (pageContext) => {
   const pageSlug = pageContext.params.slug
-
-  const query = gql`
-    query ($pageSlug: String!) {
-      featuredPage(where: { slug: $pageSlug }) {
-        id
-        title
-        mainPhoto {
-          url
-        }
-        mediaPhotos {
-          id
-          url
-        }
-        description {
-          html
-          text
-        }
-        productDetails {
-          url
-          fileName
-        }
-      }
-    }
-  `
-  const variables = {
-    pageSlug,
-  }
-
-  const data = await graphQLClient.request(query, variables)
+  const data = await getFeaturedPage(pageSlug)
   const { mainPhoto, mediaPhotos, title, description, productDetails } = data.featuredPage
 
   return {
-    props: { mainPhoto, mediaPhotos, title, description, productDetails },
+    props: { mainPhoto, mediaPhotos, title, description, productDetails }
   }
 }
 
+// add router.isFallback and spinner
 export const getStaticPaths = async () => {
-  const query = gql`
-    query {
-      featuredPages {
-        id
-        slug
-      }
-    }
-  `
-  const data = await graphQLClient.request(query)
-  const paths = data.featuredPages.map((item) => ({
-    params: { slug: item.slug },
-  }))
+  const paths = await getFeaturedPaths()
 
   return {
     paths,
-    fallback: false,
+    fallback: false
   }
 }
 
@@ -72,9 +32,9 @@ const FeaturedPage = ({ mainPhoto, mediaPhotos, title, description, productDetai
     <>
       <SEO
         title={title}
-        ogtitle="YEEZY"
-        description={`${description.text.substring(0, 70)  }...`}
-        ogdescription={`${description.text.substring(0, 70)  }...`}
+        ogtitle='YEEZY'
+        description={`${description.text.substring(0, 70)}...`}
+        ogdescription={`${description.text.substring(0, 70)}...`}
         url={`http://localhost:3000${router.asPath}`}
         type='article'
         image={mainPhoto.url}

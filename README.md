@@ -1,3 +1,5 @@
-##### clone of adidas news site for educational purposes
+### clone of adidas news site for educational purposes
 
-###### next.js graphql graphcms styled-components
+#### reference url: [news.adidas.com/yeezy](https://news.adidas.com/yeezy)
+
+###### next.js graphql graphcms styled-components mantine

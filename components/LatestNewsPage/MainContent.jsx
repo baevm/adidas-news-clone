@@ -11,7 +11,6 @@ import MenuAccordion from './MenuAccordion'
 const Container25 = styled.div`
   margin-top: 3rem;
 
-
   @media (min-width: 992px) {
     display: block !important;
   }
@@ -37,6 +36,7 @@ const Container75 = styled.div`
   margin-top: 3rem;
   display: flex;
   align-items: center;
+  flex-direction: column;
 
   @media (min-width: 768px) {
     flex: 0 0 100%;
@@ -97,18 +97,48 @@ const DateText = styled.p`
 
 const CustomLink = styled.a`
   color: black;
-  font-size: 18px;
-  text-decoration: none;
+  font-size: ${(props) => (props.size ? props.size : '18px')};
+  text-transform: ${(props) => (props.transform ? props.transform : '')};
+  letter-spacing: ${(props) => (props.spacing ? props.spacing : '')};
+  text-decoration: ${(props) => (props.decoration ? props.decoration : 'none')};
   font-weight: bold;
-  
 
   &:hover {
     text-decoration: underline;
   }
 `
 
+const PaginationBox = styled.div`
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const CustomSelect = styled.select`
+  margin: 0 0.5rem;
+  padding: 1rem;
+  color: black;
+  border: 1px solid lightgray;
+  font-weight: bold;
+
+  option {
+    padding: 1rem;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    font-size: 16px;
+  }
+`
+
+const CustomOption = styled.option`
+  padding: 1rem;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  font-size: 16px;
+`
+
 const MainContent = ({ newsPages }) => {
-  
   return (
     <>
       <Container direction='column' align='flex-start'>
@@ -139,7 +169,7 @@ const MainContent = ({ newsPages }) => {
             {newsPages.map((item) => (
               <Grid.Col span={8} key={item.id} xs={6} sm={6} md={6} lg={4} xl={4}>
                 <Link href={`/yeezy/${item.slug}`} passHref>
-                  <Image src={item.mainPhoto.url} width={300} height={200} objectFit='cover' style={{ cursor: 'pointer' }} quality={100} layout="responsive"/>
+                  <Image src={item.mainPhoto.url} width={300} height={200} objectFit='cover' style={{ cursor: 'pointer' }} quality={100} layout='responsive' />
                 </Link>
                 <DateText>{item.date}</DateText>
                 <Link href={`/yeezy/${item.slug}`} passHref>
@@ -148,6 +178,23 @@ const MainContent = ({ newsPages }) => {
               </Grid.Col>
             ))}
           </Grid>
+          <PaginationBox>
+            <div></div>
+            <div>
+              Page
+              <CustomSelect>
+                <CustomOption>1</CustomOption>
+                <CustomOption>2</CustomOption>
+                <CustomOption>3</CustomOption>
+              </CustomSelect>
+              of 6
+            </div>
+            <Link href='/' passHref>
+              <CustomLink size='12px' transform='uppercase' spacing='1px' decoration='underline'>
+                Next
+              </CustomLink>
+            </Link>
+          </PaginationBox>
         </Container75>
       </Container>
     </>
