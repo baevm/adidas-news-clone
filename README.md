@@ -1,3 +1,4 @@
+![Vercel](http://therealsujitk-vercel-badge.vercel.app/?app=adidas-news-clone)
 ### clone of adidas news site for educational purposes
 
 #### reference url: [news.adidas.com/yeezy](https://news.adidas.com/yeezy)
