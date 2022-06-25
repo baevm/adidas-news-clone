@@ -79,7 +79,7 @@ const FeaturedCard = ({ featured }) => (
       <CardsContainer>
         {featured.map((f) => (
           <Card key={f.id}>
-            <Link href={f.slug} passHref as={f.slug}>
+            <Link href={`/${f.slug}`} passHref>
               <CustomLink>
                 <CardImage src={f.mainPhoto.url} alt={f.title} width={300} height={400} quality={100} />
                 <ImageText>{f.title}</ImageText>

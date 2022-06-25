@@ -193,7 +193,9 @@ const MainContent = ({ newsPages, pagesCount }) => {
             {pages.map((item) => (
               <Grid.Col span={8} key={item.id} xs={6} sm={6} md={6} lg={4} xl={4}>
                 <Link href={`/yeezy/${item.slug}`} passHref>
-                  <Image src={item.mainPhoto.url} width={300} height={200} objectFit='cover' style={{ cursor: 'pointer' }} quality={2} layout='responsive' />
+                  <a>
+                    <Image src={item.mainPhoto.url} width={300} height={200} objectFit='cover' style={{ cursor: 'pointer' }} quality={2} layout='responsive' />
+                  </a>
                 </Link>
                 <DateText>{item.date}</DateText>
                 <Link href={`/yeezy/${item.slug}`} passHref>

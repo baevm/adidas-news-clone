@@ -47,11 +47,11 @@ const NewsCard = ({ news }) => {
     <>
       <Container>
         <CardsTitle>
-          <Link href={{ pathname: 'latest-news', query: { brands: 'yeezy' } }} passHref>
+          <Link href={{ pathname: '/latest-news', query: { brands: 'yeezy' } }} passHref>
             <CustomLink color='black'>latest news</CustomLink>
           </Link>
         </CardsTitle>
-        <Link href={{ pathname: 'latest-news', query: { brands: 'yeezy' } }} passHref>
+        <Link href={{ pathname: '/latest-news', query: { brands: 'yeezy' } }} passHref>
           <CustomLink color='black' size='14px' spacing='1.5px' decoration='uppercase' weight='700'>
             see all
           </CustomLink>
