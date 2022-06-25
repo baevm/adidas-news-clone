@@ -7,6 +7,8 @@ import styled from 'styled-components'
 import { Container } from '../Layout/Container'
 import { Title } from '../Layout/Title'
 import MenuAccordion from './MenuAccordion'
+import { useStateWithDep } from '../../hooks/useStateWithDeps'
+import { getLatestNewsPage } from '../../lib/graphcms'
 
 const Container25 = styled.div`
   margin-top: 3rem;
@@ -138,7 +140,29 @@ const CustomOption = styled.option`
   font-size: 16px;
 `
 
-const MainContent = ({ newsPages }) => {
+const MainContent = ({ newsPages, pagesCount }) => {
+  const [pages, setPages] = useStateWithDep(newsPages)
+  const pagesLength = Math.ceil(pagesCount.count / 12)
+
+  const handleNext = async (e) => {
+    const data = await getLatestNewsPage(Number(e.target.value))
+    setPages(data.newsPages)
+  }
+
+  const renderPagesCount = () => {
+    const items = []
+
+    for (let i = 0; i < pagesLength; i += 1) {
+      items.push(
+        <CustomOption key={i} value={i * 12} onChange={(e) => handleNext(e.currentTarget.value)}>
+          {i + 1}
+        </CustomOption>
+      )
+    }
+
+    return <CustomSelect onChange={handleNext}>{items}</CustomSelect>
+  }
+
   return (
     <>
       <Container direction='column' align='flex-start'>
@@ -165,11 +189,11 @@ const MainContent = ({ newsPages }) => {
         </Container25>
 
         <Container75>
-          <Grid justify='center'>
-            {newsPages.map((item) => (
+          <Grid justify='start'>
+            {pages.map((item) => (
               <Grid.Col span={8} key={item.id} xs={6} sm={6} md={6} lg={4} xl={4}>
                 <Link href={`/yeezy/${item.slug}`} passHref>
-                  <Image src={item.mainPhoto.url} width={300} height={200} objectFit='cover' style={{ cursor: 'pointer' }} quality={100} layout='responsive' />
+                  <Image src={item.mainPhoto.url} width={300} height={200} objectFit='cover' style={{ cursor: 'pointer' }} quality={2} layout='responsive' />
                 </Link>
                 <DateText>{item.date}</DateText>
                 <Link href={`/yeezy/${item.slug}`} passHref>
@@ -182,12 +206,8 @@ const MainContent = ({ newsPages }) => {
             <div></div>
             <div>
               Page
-              <CustomSelect>
-                <CustomOption>1</CustomOption>
-                <CustomOption>2</CustomOption>
-                <CustomOption>3</CustomOption>
-              </CustomSelect>
-              of 6
+              {renderPagesCount()}
+              of {pagesLength}
             </div>
             <Link href='/' passHref>
               <CustomLink size='12px' transform='uppercase' spacing='1px' decoration='underline'>

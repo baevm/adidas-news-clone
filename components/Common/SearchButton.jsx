@@ -33,10 +33,11 @@ const SearchButton = () => {
           transition={{ ease: [0.17, 0.67, 0.83, 0.67] }}
           exit={{ width: 0, opacity: 0 }}>
           <div
+            ref={ref}
             style={{
               position: 'relative',
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'center'
             }}>
             <SearchInput placeholder='SEARCH' />
             <FiSearch size='1.2em' style={{ position: 'absolute', float: 'right', marginLeft: '1rem', left: '1px' }} />

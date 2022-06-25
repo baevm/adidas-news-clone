@@ -1,4 +1,4 @@
-import { ActionIcon, Grid, SimpleGrid } from '@mantine/core'
+import { ActionIcon, Grid } from '@mantine/core'
 import React from 'react'
 import Image from 'next/image'
 import { CgArrowLongRight } from 'react-icons/cg'

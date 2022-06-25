@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import React from 'react'
+import Link from 'next/link'
 import styled from 'styled-components'
 import adidasLogo from '../../public/adidas-logo.svg'
 import { Container } from '../Layout/Container'
-import CustomBurger from './CustomBurger'
 import MediaCart from './Cart/MediaCart'
+import CustomBurger from './CustomBurger'
 import SearchButton from './SearchButton'
 
 const HeaderContainer = styled.div`
@@ -55,8 +55,12 @@ const Header = () => (
         </div>
       </ItemContainer>
 
-      <LogoContainer style={{}}>
-        <Image src={adidasLogo} alt='adidas logo' />
+      <LogoContainer>
+        <Link href='/yeezy' passHref>
+          <a>
+            <Image src={adidasLogo} alt='adidas logo' />
+          </a>
+        </Link>
       </LogoContainer>
 
       <ItemContainer>

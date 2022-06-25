@@ -23,7 +23,8 @@
 	  "react/jsx-props-no-spreading": 0,
 	  "arrow-body-style":"off",
 	  "react/react-in-jsx-scope": "off",
-	  "react/self-closing-comp": "off"
+	  "react/self-closing-comp": "off",
+	  "jsx-a11y/anchor-is-valid": "off"
   },
   "plugins": ["prettier"]
 }

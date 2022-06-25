@@ -11,7 +11,7 @@ const SEO = ({ title, ogtitle, description, ogdescription, type, url, image }) =
     <meta property='og:description' content={ogdescription} />
     <meta property='og:url' content={url} />
     <meta property='og:type' content={type} />
-    <meta property='og:image' content={image} />
+    {image && <meta property='og:image' content={image} />}
     <link rel='icon' href='/favicon.ico' />
     <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
   </Head>

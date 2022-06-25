@@ -114,7 +114,6 @@ const SneakerPopup = ({ open, setOpen, clicked, mediaPhotos, title }) => {
           setCurrent={setCurrent}
           addedAlert={addedAlert}
           setCurrentId={setCurrentId}
-      
         />
 
         <TextContainer>

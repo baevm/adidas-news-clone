@@ -39,7 +39,7 @@ const AddAlert = styled(motion.div)`
   box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
 `
 
-const PopupImage = ({ clicked, mediaPhotos, title, setCurrent, addedAlert, setCurrentId, setCurrentTitle }) => {
+const PopupImage = ({ clicked, mediaPhotos, title, setCurrent, addedAlert, setCurrentId }) => {
   const [speed, setSpeed] = useState(700) // speed for carousel. set default as 700. on carousel mount set as 1000 otherwise its bugged and resets to 0
   const [watchAddedAlert, setWatchAddedAlert] = useState(addedAlert)
 
