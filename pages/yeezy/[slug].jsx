@@ -35,7 +35,7 @@ const NewsPage = ({ mainPhoto, mediaPhotos, title, description, date }) => {
         ogtitle='YEEZY'
         description={`${description.text.substring(0, 70)}...`}
         ogdescription={`${description.text.substring(0, 70)}...`}
-        url={`http://localhost:3000${router.asPath}`}
+        url={`${router.asPath}`}
         type='article'
         image={mainPhoto.url}
       />

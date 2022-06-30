@@ -15,7 +15,7 @@ const LatestNews = ({ newsPages, pagesCount }) => {
         ogtitle='YEEZY'
         description='Browse latest news of adidas YEEZY'
         ogdescription='Browse latest news of adidas YEEZY'
-        url='http://localhost:3000/yeezy'
+        url=''
         type='website'
       />
       <Header />

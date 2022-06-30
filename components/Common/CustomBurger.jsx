@@ -106,7 +106,6 @@ export default function CustomBurger() {
         onClick={() => setOpened((o) => !o)}
         sx={{
           borderRadius: 0,
-          marginRight: '3.5rem',
           border: `${opened ? '1px solid black' : ''}`,
           zIndex: 1000
         }}

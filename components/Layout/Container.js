@@ -12,7 +12,6 @@ export const Container = styled.div`
   margin-top: ${(props) => (props.mt ? props.mt : '')};
   margin-bottom: ${(props) => (props.mb ? props.mb : '')};
 
-
   // xs
   @media (min-width: 576px) {
     max-width: 540px;
@@ -24,20 +23,20 @@ export const Container = styled.div`
     flex-direction: row;
     //align-items: center;
     padding-right: 10px;
-  padding-left: 10px;
+    padding-left: 10px;
   }
 
   // md
   @media (min-width: 992px) {
     max-width: 960px;
     padding-right: 10px;
-  padding-left: 10px;
+    padding-left: 10px;
   }
-  
+
   // lg
   @media (min-width: 1200px) {
     max-width: 1280px;
     padding-right: 10px;
-  padding-left: 10px;
+    padding-left: 10px;
   }
 `

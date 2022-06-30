@@ -1,7 +1,7 @@
 import { Grid } from '@mantine/core'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { VscClose } from 'react-icons/vsc'
 import styled from 'styled-components'
 import { Container } from '../Layout/Container'
@@ -71,7 +71,7 @@ const Text = styled.h4`
 
 const TagWrapper = styled.div`
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 0.75rem;
   letter-spacing: 0.7px;
   border: 1px solid #ededed;
   padding-left: 5px;
@@ -163,11 +163,16 @@ const MainContent = ({ newsPages, pagesCount }) => {
     return <CustomSelect onChange={handleNext}>{items}</CustomSelect>
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pages])
+
   return (
     <>
       <Container direction='column' align='flex-start'>
         <Title transform='uppercase'>news</Title>
       </Container>
+
       <Container align='flex-start' direction='column' mb='5rem'>
         <Container25>
           <FilterWrapper p='1rem'>
@@ -191,10 +196,10 @@ const MainContent = ({ newsPages, pagesCount }) => {
         <Container75>
           <Grid justify='start'>
             {pages.map((item) => (
-              <Grid.Col span={8} key={item.id} xs={6} sm={6} md={6} lg={4} xl={4}>
+              <Grid.Col span={12} key={item.id} xs={6} sm={6} md={6} lg={4} xl={4}>
                 <Link href={`/yeezy/${item.slug}`} passHref>
                   <a>
-                    <Image src={item.mainPhoto.url} width={300} height={200} objectFit='cover' style={{ cursor: 'pointer' }} quality={2} layout='responsive' />
+                    <Image src={item.mainPhoto.url} width={300} height={200} objectFit='cover' style={{ cursor: 'pointer' }} quality={90} layout='responsive' />
                   </a>
                 </Link>
                 <DateText>{item.date}</DateText>

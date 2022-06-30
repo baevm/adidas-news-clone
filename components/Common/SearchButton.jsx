@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useOutsideClick } from '../../hooks/useOutsideClick'
 
 const SearchInput = styled.input`
-  font-size: 14px;
+  font-size: 0.875rem;
   padding: 15px 0px 15px 50px;
   height: 100%;
   width: 100%;

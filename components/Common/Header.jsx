@@ -14,9 +14,13 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  position: fixed;
   z-index: 1;
   top: 0;
+
+  // sm
+  @media (min-width: 768px) {
+    position: fixed;
+  }
 `
 
 const ItemContainer = styled.div`
@@ -39,20 +43,17 @@ const Text = styled.p`
   margin: 0;
   font-family: adineuePRO, sans-serif;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.875rem;
   letter-spacing: 1px;
+  padding-left: 1rem;
 `
 
 const Header = () => (
   <HeaderContainer>
     <Container position='relative'>
       <ItemContainer>
-        <div>
-          <CustomBurger />
-        </div>
-        <div>
-          <Text>NEWS</Text>
-        </div>
+        <CustomBurger />
+        <Text>NEWS</Text>
       </ItemContainer>
 
       <LogoContainer>

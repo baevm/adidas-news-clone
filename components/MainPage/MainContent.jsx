@@ -31,10 +31,8 @@ const MainContent = ({ news, featured }) => (
       </ItemContainer>
     </Container>
 
-    <MainImageContainer >
-  
-        <Image src={news[6].mainPhoto.url} alt='main photo' layout='fill' objectFit='cover' quality={75} />
-   
+    <MainImageContainer>
+      <Image src={news[6].mainPhoto.url} alt='main photo' layout='fill' objectFit='cover' quality={75} />
 
       <ImageTextContainer>
         <ImageTitle>
@@ -93,15 +91,14 @@ const CustomIconLink = styled.a`
 `
 
 const MainImageContainer = styled.div`
-  width:100%; 
-  height: 400px; 
-  position: relative; 
+  width: 100%;
+  height: 400px;
+  position: relative;
   overflow: hidden;
 
-  @media(min-width: 768px){
+  @media (min-width: 768px) {
     height: 725px;
   }
-
 `
 
 const ImageTextContainer = styled.div`
@@ -118,7 +115,7 @@ const ImageTextContainer = styled.div`
   margin-right: auto;
   width: 100%;
   font-family: adineuePRO;
-  
+
   @media (min-width: 320px) {
     max-width: 540px;
     position: absolute;
